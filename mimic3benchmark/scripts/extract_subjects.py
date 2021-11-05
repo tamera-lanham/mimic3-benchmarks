@@ -9,7 +9,17 @@ from mimic3benchmark.util import dataframe_from_csv
 
 # Tamera added this to make this scrip accessible from Python, not just from the command line
 def run(mimic3_path, output_path, **kwargs):
-    args = argparse.Namespace(mimic3_path=mimic3_path, output_path=output_path, **kwargs)
+    defaults = {
+        'event_tables': ['CHARTEVENTS', 'LABEVENTS', 'OUTPUTEVENTS'],
+        'phenotype_definitions': os.path.join(os.path.dirname(__file__), '../resources/hcup_ccs_2015_definitions.yaml'),
+        'verbose': True
+    }
+    args_dict = {'mimic3_path': mimic3_path, 'output_path': output_path, **kwargs, **defaults}
+
+    if kwargs['quiet']: args_dict['verbose'] = False
+    if kwargs['test']: args_dict['test'] = True
+    
+    args = argparse.Namespace(**args_dict)
     main(args)
 
 def main(args):
