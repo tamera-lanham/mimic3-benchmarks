@@ -16,9 +16,9 @@ def run(mimic3_path, output_path, **kwargs):
     }
     args_dict = {'mimic3_path': mimic3_path, 'output_path': output_path, **kwargs, **defaults}
 
-    if kwargs['quiet']: args_dict['verbose'] = False
-    if kwargs['test']: args_dict['test'] = True
-    
+    if kwargs.get('quiet', False): args_dict['verbose'] = False
+    if kwargs.get('test', False): args_dict['test'] = True
+
     args = argparse.Namespace(**args_dict)
     main(args)
 
