@@ -3,6 +3,9 @@ from __future__ import print_function
 
 import argparse
 import yaml
+from mimic3benchmark.mimic3csv import *
+from mimic3benchmark.preprocessing import add_hcup_ccs_2015_groups, make_phenotype_label_matrix
+from mimic3benchmark.util import dataframe_from_csv
 
 # Tamera added this to make this scrip accessible from Python, not just from the command line
 def run(mimic3_path, output_path, **kwargs):
@@ -69,9 +72,6 @@ def main(args):
                                                 subjects_to_keep=subjects)
 
 if __name__ == '__main__':
-    from mimic3benchmark.mimic3csv import *
-    from mimic3benchmark.preprocessing import add_hcup_ccs_2015_groups, make_phenotype_label_matrix
-    from mimic3benchmark.util import dataframe_from_csv
 
     parser = argparse.ArgumentParser(description='Extract per-subject data from MIMIC-III CSV files.')
     parser.add_argument('mimic3_path', type=str, help='Directory containing MIMIC-III CSV files.')
