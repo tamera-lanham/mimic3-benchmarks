@@ -12,7 +12,8 @@ def run(mimic3_path, output_path, **kwargs):
     defaults = {
         'event_tables': ['CHARTEVENTS', 'LABEVENTS', 'OUTPUTEVENTS'],
         'phenotype_definitions': os.path.join(os.path.dirname(__file__), '../resources/hcup_ccs_2015_definitions.yaml'),
-        'verbose': True
+        'verbose': True,
+        'itemids_file': None
     }
     args_dict = {'mimic3_path': mimic3_path, 'output_path': output_path, **kwargs, **defaults}
 
