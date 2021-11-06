@@ -10,8 +10,12 @@ from tqdm import tqdm
 def is_subject_folder(x):
     return str.isdigit(x)
 
+# Tamera added this to make this script accessible from Python (not just from the command line)
+def run(subjects_root_path):
+    args = argparse.Namespace(subjects_root_path = subjects_root_path)
+    main(args)
 
-def main():
+def main(args):
 
     n_events = 0                   # total number of events
     empty_hadm = 0                 # HADM_ID is empty in events.csv. We exclude such events.
@@ -20,12 +24,6 @@ def main():
     recovered = 0                  # empty ICUSTAY_IDs are recovered according to stays.csv files (given HADM_ID)
     could_not_recover = 0          # empty ICUSTAY_IDs that are not recovered. This should be zero.
     icustay_missing_in_stays = 0   # ICUSTAY_ID does not appear in stays.csv. We exclude such events.
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('subjects_root_path', type=str,
-                        help='Directory containing subject subdirectories.')
-    args = parser.parse_args()
-    print(args)
 
     subdirectories = os.listdir(args.subjects_root_path)
     subjects = list(filter(is_subject_folder, subdirectories))
@@ -91,4 +89,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('subjects_root_path', type=str,
+                        help='Directory containing subject subdirectories.')
+    args = parser.parse_args()
+    print(args)
+
+    main(args)

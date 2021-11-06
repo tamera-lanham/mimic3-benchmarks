@@ -7,7 +7,7 @@ from mimic3benchmark.mimic3csv import *
 from mimic3benchmark.preprocessing import add_hcup_ccs_2015_groups, make_phenotype_label_matrix
 from mimic3benchmark.util import dataframe_from_csv
 
-# Tamera added this to make this scrip accessible from Python, not just from the command line
+# Tamera added this to make this script accessible from Python (not just from the command line)
 def run(mimic3_path, output_path, **kwargs):
     defaults = {
         'event_tables': ['CHARTEVENTS', 'LABEVENTS', 'OUTPUTEVENTS'],
