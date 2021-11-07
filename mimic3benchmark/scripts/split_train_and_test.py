@@ -5,6 +5,10 @@ import os
 import shutil
 import argparse
 
+# Tamera added this to make this script accessible from Python (not just from the command line)
+def run(subjects_root_path):
+    args = argparse.Namespace(subjects_root_path=subjects_root_path)
+    main(args)
 
 def move_to_partition(args, patients, partition):
     if not os.path.exists(os.path.join(args.subjects_root_path, partition)):
@@ -15,10 +19,7 @@ def move_to_partition(args, patients, partition):
         shutil.move(src, dest)
 
 
-def main():
-    parser = argparse.ArgumentParser(description='Split data into train and test sets.')
-    parser.add_argument('subjects_root_path', type=str, help='Directory containing subject sub-directories.')
-    args, _ = parser.parse_known_args()
+def main(args):
 
     test_set = set()
     with open(os.path.join(os.path.dirname(__file__), '../resources/testset.csv'), "r") as test_set_file:
@@ -39,4 +40,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description='Split data into train and test sets.')
+    parser.add_argument('subjects_root_path', type=str, help='Directory containing subject sub-directories.')
+    args, _ = parser.parse_known_args()
+    main(args)
