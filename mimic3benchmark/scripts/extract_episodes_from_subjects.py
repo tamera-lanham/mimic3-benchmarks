@@ -15,8 +15,8 @@ from mimic3benchmark.preprocessing import assemble_episodic_data
 # Tamera added this to make this script accessible from Python (not just from the command line)
 def run(subjects_root_path, **kwargs):
     defaults = {
-        'variable_map_file': os.path.join(os.path.dirname(__file__), '../resources/itemid_to_variable_map.csv',
-        'reference_range_file': os.path.join(os.path.dirname(__file__), '../resources/variable_ranges.csv'
+        'variable_map_file': os.path.join(os.path.dirname(__file__), '../resources/itemid_to_variable_map.csv'),
+        'reference_range_file': os.path.join(os.path.dirname(__file__), '../resources/variable_ranges.csv')
     }
     args_dict = {'subjects_root_path': subjects_root_path, **defaults, **kwargs}
     args = argparse.Namespace(**args_dict)
