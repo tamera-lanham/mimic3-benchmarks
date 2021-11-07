@@ -16,7 +16,7 @@ def run(mimic3_path, output_path, **kwargs):
         'itemids_file': None,
         'test': False
     }
-    args_dict = {'mimic3_path': mimic3_path, 'output_path': output_path, **kwargs, **defaults}
+    args_dict = {'mimic3_path': mimic3_path, 'output_path': output_path, **defaults, **kwargs}
 
     if kwargs.get('quiet', False): args_dict['verbose'] = False
 
