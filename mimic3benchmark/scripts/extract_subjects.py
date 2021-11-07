@@ -13,12 +13,12 @@ def run(mimic3_path, output_path, **kwargs):
         'event_tables': ['CHARTEVENTS', 'LABEVENTS', 'OUTPUTEVENTS'],
         'phenotype_definitions': os.path.join(os.path.dirname(__file__), '../resources/hcup_ccs_2015_definitions.yaml'),
         'verbose': True,
-        'itemids_file': None
+        'itemids_file': None,
+        'test': False
     }
     args_dict = {'mimic3_path': mimic3_path, 'output_path': output_path, **kwargs, **defaults}
 
     if kwargs.get('quiet', False): args_dict['verbose'] = False
-    if kwargs.get('test', False): args_dict['test'] = True
 
     args = argparse.Namespace(**args_dict)
     main(args)
