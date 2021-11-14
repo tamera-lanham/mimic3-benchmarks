@@ -98,3 +98,4 @@ if __name__ == '__main__':
     parser.set_defaults(verbose=True)
     parser.add_argument('--test', action='store_true', help='TEST MODE: process only 1000 subjects, 1000000 events.')
     args, _ = parser.parse_known_args()
+    main(args)
